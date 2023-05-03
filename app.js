@@ -175,7 +175,7 @@ app.get("/states/:stateId/stats/", async(request, response) => {
 });
 
 //Returns a stateName based on district Id 
-app.get("/ditricts/:districtId/details/" async(request,response) => {
+app.get("/ditricts/:districtId/details/", async(request,response) => ({
     const {districtId} = request.params;
     const stateDetails = `
     SELECT state_name
@@ -184,7 +184,7 @@ app.get("/ditricts/:districtId/details/" async(request,response) => {
     WHERE district.district_id = ${districtId};
     `;
     const stateName = await db.get(stateDetails);
-    response.send{stateName:stateName.state_name});
+    response.send({stateName:stateName.state_name});
 });
 
 module.exports = app;
